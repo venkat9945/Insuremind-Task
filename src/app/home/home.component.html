@@ -1,0 +1,114 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 bg-success text-white heading">
+      <p class="mb-0">STAR WARS</p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-3 bg-default">
+      <div class="card rounded-0 p-3" style="height: 77vh;">
+        <h4 class="mb-0 text-success">Filters</h4>
+        <br />
+        <div class="mb-4">
+          <p-multiSelect
+            [options]="films"
+            optionLabel="title"
+            placeholder="Films"
+            [(ngModel)]="filterOptions.films"
+          />
+        </div>
+
+        <div class="mb-4">
+          <p-multiSelect
+            [options]="species"
+            optionLabel="name"
+            placeholder="Species"
+            [(ngModel)]="filterOptions.species"
+          />
+        </div>
+
+
+        <div class="mb-4">
+          <p-multiSelect
+            [options]="vehicles"
+            optionLabel="name"
+            placeholder="Vehicles"
+            [(ngModel)]="filterOptions.vehicles"
+          />
+        </div>
+
+
+        <div class="mb-4">
+          <p-multiSelect
+            [options]="starships"
+            optionLabel="name"
+            placeholder="Starships"
+            [(ngModel)]="filterOptions.starships"
+          />
+        </div>
+
+        <div class="mb-4">
+          <p-multiSelect
+            [options]="birthYears"
+            optionLabel="name"
+            placeholder="Birth Year"
+            [(ngModel)]="filterOptions.birth_years"
+          />
+        </div>
+
+        <button class="btn btn-outline-success" (click)="filterOptionSearch()"> Search</button>
+
+
+      </div>
+    </div>
+
+    <div class="col-md-9 bg-default">
+      <div class="card rounded-0 p-5">
+        @if(search == true){
+          <h5 class="mb-3 text-success"><b>SEARCH RESULTS - {{ peoples.length }}</b></h5>
+        }@else {
+          <h5 class="mb-3 text-success"><b>TOTAL RECORDS - {{ peoples.length }}</b></h5>
+        }
+
+        <p-table
+          [value]="peoples"
+          styleClass="p-datatable-striped p-datatable-gridlines"
+          [paginator]="peoples.length > 0"
+          [rows]="5"
+          [tableStyle]="{ 'min-width': '50rem' }"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th width="10%" class="text-center">Sl.NO</th>
+              <th width="20%">Character Name</th>
+              <th width="20%">Vehicle</th>
+              <th width="20%">Starships</th>
+              <th width="20%">Species</th>
+              <th width="10%" class="text-center">Birth Year</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-people let-i="rowIndex">
+            <tr (click)="getPeopleData(people)">
+              <td class="text-center">{{ i + 1 }}</td>
+              <td>{{ people.name }}</td>
+              <td>{{ people.vehicles }}</td>
+              <td>{{ people.starships }}</td>
+              <td>{{ people.species }}</td>
+              <td class="text-center">
+                {{ people.birth_year == "unknown" ? "-" : people.birth_year }}
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage" let-columns>
+            <tr>
+              <td [attr.colspan]="6" class="text-center">No records found</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>

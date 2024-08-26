@@ -1,0 +1,114 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 bg-success text-white heading">
+      <p class="mb-0">STAR WARS</p>
+    </div>
+  </div>
+</div>
+@if(isLoading){
+  <div class="overlay">
+    <div class="spinner"></div>
+  </div>
+}
+
+
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-3">
+      <div class="card rounded-0 p-3">
+        <img
+          src="https://www.pngall.com/wp-content/uploads/4/World-Wide-Web-PNG-Picture.png"
+          width="140px"
+          class="rounded mx-auto d-block"
+        />
+
+        <div class="mx-auto d-block">
+          <table>
+            <tr>
+              <td>Name:</td>
+              <td>{{ profileData.name }}</td>
+            </tr>
+            <tr>
+              <td>SkywalkerBorn:</td>
+              <td>{{ profileData.birth_year }}</td>
+            </tr>
+            <tr>
+              <td>Gender:</td>
+              <td>{{ profileData.gender }}</td>
+            </tr>
+            <tr>
+              <td>Height:</td>
+              <td>{{ profileData.height }}</td>
+            </tr>
+            <tr>
+              <td>Weight:</td>
+              <td>{{ profileData.mass }}</td>
+            </tr>
+            <tr>
+              <td>Created at:</td>
+              <td>{{ profileData.created | date : "mm-dd-YYYY" }}</td>
+            </tr>
+            <tr>
+              <td>Edited at:</td>
+              <td>{{ profileData.edited | date : "mm-dd-YYYY" }}</td>
+            </tr>
+            <tr>
+              <td>Hair Color:</td>
+              <td>{{ profileData.hair_color }}</td>
+            </tr>
+            <tr>
+              <td>Eye Color:</td>
+              <td>{{ profileData.skin_color }}</td>
+            </tr>
+
+            <tr>
+              <td>Skin Color:</td>
+              <td>{{ profileData.eye_color }}</td>
+            </tr>
+
+            <tr>
+              <td><b>Species:</b></td>
+              <td>
+                <b>{{ profileData.speciesArr }}</b>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-9 bg-default">
+      <div class="card rounded-0 p-5">
+        <h5 class="text-success"><b>FILMS</b></h5>
+        <div class="bg-light p-3">
+          @for (item of profileData.filmsArr; track item) {
+            <li>{{ item }}</li>
+            } @empty {
+            <li>No Items.</li>
+            }
+        </div>
+
+        <br />
+        <h5 class="text-success"><b>VEHICLES</b></h5>
+        <div class="bg-light p-3">
+          @for (item of profileData.vehiclesArr; track item) {
+            <li>{{ item }}</li>
+            } @empty {
+            <li>No Items.</li>
+            }
+        </div>
+
+
+        <br />
+        <h5 class="text-success"><b>STARSHIPS</b></h5>
+        <div class="bg-light p-3">
+          @for (item of profileData.starshippArr; track item) {
+            <li>{{ item }}</li>
+            } @empty {
+            <li>No Items.</li>
+            }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
